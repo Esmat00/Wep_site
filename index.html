@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+   <!-- <link rel="icon" type="image/x-icon" href="./favicon.ico"> -->
+
+   <link rel="icon" href="./favicon_2.ico" type="image/x-icon">
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Tech</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+    
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --shadow: 0 10px 40px rgba(0,0,0,0.1);
+      --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    
+    body.dark {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --shadow: 0 10px 40px rgba(0,0,0,0.3);
+      --shadow-hover: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      scroll-behavior: smooth;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: var(--primary-gradient);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    
+    .hero-content {
+      text-align: center;
+      color: white;
+      z-index: 2;
+      position: relative;
+    }
+
+
+
+    /* ...existing code... */
+
+
+.profile-image {
+  margin: 0 auto 30px auto;
+}
+/* ...existing code... */
+    
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid rgba(255,255,255,0.3);
+      margin: 0 auto 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      transition: transform 0.3s ease;
+    }
+    
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: slideInUp 1s ease 0.2s both;
+    }
+    
+    .hero .subtitle {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      animation: slideInUp 1s ease 0.4s both;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--secondary-gradient);
+      color: white;
+      padding: 15px 35px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      animation: slideInUp 1s ease 0.6s both;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    /* Dark Mode Button */
+    .dark-toggle {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .dark-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Sections */
+    .section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 60px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .skill-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    
+    .skill-card.animate {
+      animation: slideInUp 0.6s ease forwards;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .skill-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: white;
+    }
+    
+    .skill-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-primary);
+    }
+    
+    .skill-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    
+    .project-card.animate {
+      animation: slideInUp 0.6s ease forwards;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .project-image {
+      height: 200px;
+      background: var(--secondary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+    
+    .project-content {
+      padding: 30px;
+    }
+    
+    .project-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-primary);
+    }
+    
+    .project-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .project-link {
+      display: inline-block;
+      background: var(--primary-gradient);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .project-link:hover {
+      transform: translateX(-5px);
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      background: var(--primary-gradient);
+      color: white;
+      text-align: center;
+    }
+    
+    .contact-section .section-title {
+      color: white;
+      -webkit-text-fill-color: white;
+    }
+    
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .contact-item {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+    }
+    
+    .contact-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item a:hover {
+      color: #f093fb;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--card-bg);
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-secondary);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Animations */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .profile-image {
+        width: 140px;
+        height: 140px;
+        font-size: 50px;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Dark Mode Toggle -->
+  <button class="dark-toggle" id="darkToggle">🌙</button>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="profile-image">
+        <!-- ضع صورتك هنا -->
+        <img src="my.jpeg" alt="الصورة الشخصية" id="profileImg">
+        <!-- أو استخدم رمز بدلاً من الصورة -->
+        <span id="profileIcon" style="display: none;">👨‍💻</span>
+      </div>
+      <h1> Mahmoud Esmat</h1>
+      <p class="subtitle">Front-end Developer  </p>
+      <a href="#contact" class="cta-button">تواصل معي الآن</a>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <h2 class="section-title">خبراتي ومهاراتي</h2>
+    <p class="section-subtitle">أمتلك خبرة لا بس بها في تقنيات الويب الحديثة وأدوات التطوير المتقدمة</p>
+    
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <h3>تطوير الواجهات الأمامية</h3>
+        <p>HTML5, CSS3, JavaScript مع التركيز على تجربة المستخدم والتصميم المتجاوب</p>
+      </div>
+      
+
+      
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <h3>التطوير المتجاوب</h3>
+        <p>Bootstrap, Tailwind CSS, Progressive Web Apps للحصول على تجربة مثالية على جميع الأجهزة</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <h3>أدوات التطوير</h3>
+        <p>VS Code, claude, chatgpt لتسريع عملية التطوير وضمان الجودة</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <h2 class="section-title">أحدث مشاريعي</h2>
+    <p class="section-subtitle">مجموعة مختارة من أفضل أعمالي التي تعكس خبرتي ومهاراتي في التطوير</p>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">👨‍💻</div>
+        <div class="project-content">
+          <h3>  موقع شخصي يحتوي مشاريع  </h3>
+          <p> هي مدونة شخصية او سيرة ذاتية داخلها مهارات ومشاريع </p>
+          <a href="  https://esmat00.github.io/project-in-some-project/" class="project-link">عرض المشروع ←</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">🖼️</div>
+        <div class="project-content">
+          <h3>موقع مكتبة صور طبيعية </h3>
+          <p> مكتبة صور جذابة بستخدام مكتبة خارجية من المربعات وشريط التحكم العلوي </p>
+          <a href=" https://esmat00.github.io/Landscape-Gallery/" class="project-link">عرض المشروع ←</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">📧</div>
+        <div class="project-content">
+          <h3>موقع تواصل</h3>
+          <p>موقع تواصل لحل المشاكل عن طريق الايميل</p>
+          <a href="https://esmat00.github.io/Contact-Us/" class="project-link">عرض المشروع ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section">
+      <h2 class="section-title">تواصل معي</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">أنا متاح دائماً للمشاريع الجديدة والفرص الممتعة</p>
+
+      
+
+      <div class="contact-item">
+        <h3>🔗 GitHub</h3>
+        <a href="https://github.com/Esmat00" target="_blank">clic link</a>
+      </div>
+        
+        <div class="contact-item">
+          <h3>💼 LinkedIn</h3>
+          <a href="https://www.linkedin.com/in/mahmoud-esmat-ahmed" target="_blank">clic link</a>
+        </div>
+
+        <div class="contact-item">
+          <h3>📱 واتساب</h3>
+          <a href="https://wa.me/201153055913" target="_blank"> clic number</a>
+        </div>
+      </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p> ©Made With Love By | Mahmoud Esmat 2025 </p>
+  </footer>
+  
+  <script>
+    // Dark Mode Toggle
+    const darkToggle = document.getElementById('darkToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+      darkToggle.textContent = '☀️';
+    }
+    
+    darkToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      darkToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all cards
+    document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+      observer.observe(card);
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Profile image functionality
+    const profileImg = document.getElementById('profileImg');
+    const profileIcon = document.getElementById('profileIcon');
+    
+    // Replace the placeholder with your actual image URL
+    // profileImg.src = 'path/to/your/image.jpg';
+    
+    // If you want to use the icon instead of image, uncomment these lines:
+    // profileImg.style.display = 'none';
+    // profileIcon.style.display = 'block';
+    
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const rate = scrolled * -0.5;
+      hero.style.transform = `translateY(${rate}px)`;
+    });
+  </script>
+</body>
+</html>
