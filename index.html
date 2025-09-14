@@ -376,6 +376,207 @@
       color: #f093fb;
     }
     
+    /* Chatbot Styles */
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow-hover);
+      transition: all 0.3s ease;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    }
+    
+    .chat-icon {
+      font-size: 1.5rem;
+      margin-bottom: 2px;
+    }
+    
+    .chatbot-container {
+      position: fixed;
+      bottom: 120px;
+      right: 30px;
+      width: 350px;
+      height: 500px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-hover);
+      display: flex;
+      flex-direction: column;
+      z-index: 1002;
+      transform: translateY(20px) scale(0.9);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .chatbot-container.active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .chatbot-header {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 20px;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chatbot-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    
+    .chatbot-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .bot-message, .user-message {
+      padding: 12px 16px;
+      border-radius: 15px;
+      max-width: 80%;
+      word-wrap: break-word;
+      animation: messageSlide 0.3s ease;
+    }
+    
+    .bot-message {
+      background: var(--accent-gradient);
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .user-message {
+      background: var(--secondary-gradient);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .chatbot-input-area {
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 10px;
+    }
+    
+    .chatbot-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 25px;
+      background: var(--bg-color);
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .chatbot-input:focus {
+      border-color: #667eea;
+    }
+    
+    .chatbot-send {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .chatbot-send:hover {
+      transform: translateY(-2px);
+    }
+    
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 12px 16px;
+      background: var(--accent-gradient);
+      color: white;
+      border-radius: 15px;
+      border-bottom-left-radius: 5px;
+      max-width: 80px;
+    }
+    
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+    
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typing {
+      0%, 60%, 100% { opacity: 0.3; }
+      30% { opacity: 1; }
+    }
+    
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     /* Footer */
     .footer {
       background: var(--card-bg);
@@ -424,6 +625,25 @@
       .skills-grid,
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .chatbot-container {
+        width: 300px;
+        height: 400px;
+        right: 20px;
+        bottom: 100px;
+      }
+      
+      .chatbot-toggle {
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 0.6rem;
+      }
+      
+      .chat-icon {
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -517,7 +737,7 @@
       <h2 class="section-title">تواصل معي</h2>
       <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">أنا متاح دائماً للمشاريع الجديدة والفرص الممتعة</p>
 
-      
+      <div class="contact-methods">
 
       <div class="contact-item">
         <h3>🔗 GitHub</h3>
@@ -530,7 +750,9 @@
         </div>
 
         <div class="contact-item">
-          <h3>📱 واتساب</h3>
+          <h3>💬 whatsapp</h3>
+         
+
           <a href="https://wa.me/201153055913" target="_blank"> clic number</a>
         </div>
       </div>
@@ -538,6 +760,30 @@
       </div>
     </div>
   </section>
+  
+  <!-- Chatbot -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+      <h3>🤖 مساعد محمود</h3>
+      <button class="chatbot-close" id="chatbotClose">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="bot-message">
+        مرحباً! أنا مساعد محمود الذكي 👋<br>
+        يمكنني الإجابة على أي سؤال حول خبراته ومهاراته ومشاريعه
+      </div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="اكتب سؤالك هنا...">
+      <button class="chatbot-send" id="chatbotSend">إرسال</button>
+    </div>
+  </div>
+  
+  <!-- Chatbot Toggle Button -->
+  <button class="chatbot-toggle" id="chatbotToggle">
+    <span class="chat-icon">🤖</span>
+    <span class="chat-text">اسأل عني</span>
+  </button>
   
   <!-- Footer -->
   <footer class="footer">
@@ -549,8 +795,8 @@
     const darkToggle = document.getElementById('darkToggle');
     const body = document.body;
     
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
+    // Check for saved theme preference - using sessionStorage instead of localStorage
+    const savedTheme = sessionStorage.getItem('theme');
     if (savedTheme === 'dark') {
       body.classList.add('dark');
       darkToggle.textContent = '☀️';
@@ -560,7 +806,183 @@
       body.classList.toggle('dark');
       const isDark = body.classList.contains('dark');
       darkToggle.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    
+    // Chatbot Knowledge Base
+    const chatbotKnowledge = {
+      greeting: [
+        "مرحباً! أنا محمود عصمت، مطور Front-end محترف 👋",
+        "أهلاً وسهلاً! كيف يمكنني مساعدتك اليوم؟",
+        "مرحباً بك! اسألني أي شيء عن خبراتي ومهاراتي"
+      ],
+      skills: [
+        "أتقن تطوير الواجهات الأمامية باستخدام HTML5, CSS3, JavaScript",
+        "أعمل مع Bootstrap و Tailwind CSS لتطوير مواقع متجاوبة",
+        "أستخدم أدوات حديثة مثل VS Code و Claude و ChatGPT في التطوير",
+        "أركز على تجربة المستخدم والتصميم المتجاوب لجميع الأجهزة"
+      ],
+      projects: [
+        "لدي عدة مشاريع مميزة منها موقع شخصي يحتوي على مشاريع متنوعة",
+        "طورت مكتبة صور طبيعية جذابة باستخدام مكتبات خارجية حديثة",
+        "أنشأت موقع تواصل لحل المشاكل التقنية عبر الإيميل",
+        "جميع مشاريعي متاحة على GitHub ويمكنك مشاهدتها مباشرة"
+      ],
+      experience: [
+        "أمتلك خبرة جيدة في تطوير الويب الحديث وتقنياته المتقدمة",
+        "أتخصص في Front-end Development مع التركيز على الجودة والأداء",
+        "أعمل على تطوير Progressive Web Apps والمواقع التفاعلية",
+        "لدي خبرة في استخدام أحدث أدوات وتقنيات التطوير"
+      ],
+      contact: [
+        "يمكنك التواصل معي عبر GitHub: https://github.com/Esmat00",
+        "تجدني على LinkedIn: https://www.linkedin.com/in/mahmoud-esmat-ahmed",
+        "أو تواصل معي مباشرة عبر واتساب: 01153055913",
+        "أنا متاح دائماً للمشاريع الجديدة والفرص الممتعة!"
+      ],
+      tools: [
+        "أستخدم VS Code كمحرر رئيسي مع إضافات متقدمة",
+        "أعتمد على Claude و ChatGPT كمساعدين ذكيين في التطوير",
+        "أستخدم Git و GitHub لإدارة الكود والتعاون",
+        "أعمل مع Bootstrap و Tailwind للتصميم السريع والاحترافي"
+      ]
+    };
+
+    // Chatbot functionality
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+
+    // Toggle chatbot
+    chatbotToggle.addEventListener('click', () => {
+      chatbotContainer.classList.add('active');
+      chatbotInput.focus();
+    });
+
+    chatbotClose.addEventListener('click', () => {
+      chatbotContainer.classList.remove('active');
+    });
+
+    // Send message function
+    function sendMessage() {
+      const message = chatbotInput.value.trim();
+      if (message === '') return;
+
+      // Add user message
+      addMessage(message, 'user');
+      chatbotInput.value = '';
+
+      // Show typing indicator
+      showTypingIndicator();
+
+      // Generate bot response
+      setTimeout(() => {
+        hideTypingIndicator();
+        const response = generateResponse(message);
+        addMessage(response, 'bot');
+      }, 1000 + Math.random() * 1000);
+    }
+
+    // Add message to chat
+    function addMessage(message, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
+      messageDiv.innerHTML = message;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Generate bot response
+    function generateResponse(userMessage) {
+      const message = userMessage.toLowerCase();
+      
+      // Greeting responses
+      if (message.includes('مرحب') || message.includes('أهلا') || message.includes('السلام') || message.includes('hello') || message.includes('hi')) {
+        return getRandomResponse(chatbotKnowledge.greeting);
+      }
+      
+      // Skills responses
+      if (message.includes('مهار') || message.includes('خبر') || message.includes('تقني') || message.includes('skill') || message.includes('تعرف')) {
+        return getRandomResponse(chatbotKnowledge.skills);
+      }
+      
+      // Projects responses
+      if (message.includes('مشروع') || message.includes('أعمال') || message.includes('project') || message.includes('عمل')) {
+        return getRandomResponse(chatbotKnowledge.projects);
+      }
+      
+      // Experience responses
+      if (message.includes('تجرب') || message.includes('سنوات') || message.includes('عمل') || message.includes('وظيف')) {
+        return getRandomResponse(chatbotKnowledge.experience);
+      }
+      
+      // Contact responses
+      if (message.includes('تواصل') || message.includes('رقم') || message.includes('ايميل') || message.includes('واتس') || message.includes('contact')) {
+        return getRandomResponse(chatbotKnowledge.contact);
+      }
+      
+      // Tools responses
+      if (message.includes('أدوا') || message.includes('برام') || message.includes('محرر') || message.includes('tool') || message.includes('استخدم')) {
+        return getRandomResponse(chatbotKnowledge.tools);
+      }
+      
+      // HTML/CSS specific
+      if (message.includes('html') || message.includes('css') || message.includes('javascript')) {
+        return "أتقن HTML5 و CSS3 و JavaScript بشكل احترافي، وأستخدمهم لبناء واجهات تفاعلية وجميلة 💻";
+      }
+      
+      // Bootstrap/Tailwind specific
+      if (message.includes('bootstrap') || message.includes('tailwind')) {
+        return "أعمل مع Bootstrap و Tailwind CSS لتطوير مواقع سريعة ومتجاوبة مع جميع أحجام الشاشات 📱";
+      }
+      
+      // Default responses
+      const defaultResponses = [
+        "هذا سؤال رائع! يمكنني مساعدتك بمعلومات أكثر عن مهاراتي ومشاريعي 🤔",
+        "اسألني عن مهاراتي، مشاريعي، أو طرق التواصل معي وسأكون سعيداً بالإجابة! 😊",
+        "أعتذر، لم أفهم سؤالك تماماً. جرب أن تسأل عن مهاراتي أو مشاريعي أو خبراتي 🤖",
+        "يمكنك سؤالي عن أي شيء متعلق بخبراتي في التطوير أو مشاريعي المكتملة! 💡"
+      ];
+      
+      return getRandomResponse(defaultResponses);
+    }
+
+    function getRandomResponse(responses) {
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    function showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'typing-indicator';
+      typingDiv.id = 'typingIndicator';
+      typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const typingIndicator = document.getElementById('typingIndicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    // Event listeners
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Close chatbot when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!chatbotContainer.contains(e.target) && !chatbotToggle.contains(e.target)) {
+        chatbotContainer.classList.remove('active');
+      }
     });
     
     // Intersection Observer for animations
